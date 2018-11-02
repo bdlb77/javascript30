@@ -18,29 +18,52 @@
     }
 
     // Regular
+    console.log('Hello!')
 
     // Interpolated
-
+    let see = 'steve';
+    console.log(`Hello this is ${see}`);
+    console.log('hey %s!', see); //%s will take variable as string
     // Styled
+    console.log('%c This is text', 'background-color: #ccc');
 
     // warning!
-
+    console.warn("Careful now!");
     // Error :|
-
+      console.error('FAKE NEWS');
     // Info
-
+      console.info('Did you know..?')
     // Testing
-
+      const p = document.querySelector('p');
+      var ouch = 'ouch'
+      console.assert(p.classList.contains(ouch), `${ouch} isn't included!`);
+      
     // clearing
-
+        console.clear();
     // Viewing DOM Elements
-
+        console.log(p)
+        console.dir(p); // recieve list of attributes for node
     // Grouping together
+        dogs.forEach(dog => {
+          console.groupCollapsed(dog.name)
+          console.log(`${dog.name} is a good boy! `)
+          console.log(`${dog.name} is ${dog.age} years old`)
+          console.groupEnd(dog.name)
+        })
 
     // counting
-
+        console.count('steve')
+        console.count('steve')
+        console.count('steve')
+        console.count('steve')
     // timing
-
+        console.time('fetching data')
+        fetch('https://api.github.com/users/bdlb77')
+          .then(response => response.json())
+          .then(data =>{
+            console.timeEnd('fetching data');
+            console.log(data);
+          });
   </script>
 </body>
 </html>
