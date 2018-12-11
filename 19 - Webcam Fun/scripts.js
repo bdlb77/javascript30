@@ -29,9 +29,26 @@ function paintingToCanvas(){
 	canvas.height = height;
 	
 	setInterval(() => {
-		return ctx.drawImage(video,0, 0, width, height);
+		 ctx.drawImage(video, 0, 0, width, height);
+		 // const pixels = ctx.getImageData(0, 0, width, height);
 	}, 16)
 }
 
+function takePhoto(){
+	//play sound
+	snap.currentTime = 0;
+	snap.play();
+
+	// take data out
+	const data = canvas.toDataURL('image/jpeg');
+	const link = document.createElement('a');
+	link.href = data;
+	link.setAttribute('download', 'brybry-bug');
+	link.innerHTML = `<img src="${data}" alt="brybry" />`;
+	strip.insertBefore(link, strip.firstChild);
+
+}
+
+video.addEventListener('canplay', paintingToCanvas);
 
 getVideo();
