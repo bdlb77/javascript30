@@ -42,6 +42,29 @@
 
 <button></button>
 <script>
+  // Bubbling: default behavior of calling click on all parent Divs
+  // if set capture: true => reverse bubbling to be from div -> children
+  // propogation is idea of bubbling.. so can run e.stopPropagation() and it will stop bubbling effect
+  // if set once: will automatically remove event listener after one-time use (good for checkout buttons as to not have a customer order something again by accident w/ clicking several times)
+
+  const divs = document.querySelectorAll('div');
+  const button = documetn.querySelector('button');
+  function logText(){
+    console.log(this.classList.value)
+  }
+  divs.forEach(div => div.addEventListener('click', logText, {
+
+    // options here
+    capture: false, // if true then "reverse" bubbling to children and not towards parent
+    once: false // run event as many times as clicked
+  });
+  
+  button.addEventListener('click', () => {
+    console.log('clicked button!')
+  }, {
+    once: true // run click ONLY once 
+  });
+
 
 </script>
 </body>
