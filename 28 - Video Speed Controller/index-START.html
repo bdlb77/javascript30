@@ -15,6 +15,27 @@
   </div>
 
 <script>
+	const speed = document.querySelector('.speed');
+	const bar = document.querySelector('.speed-bar');
+	const video = document.querySelector('.flex');
+	let isDown = false;
+	speed.addEventListener('mousemove', function(e){
+		if(!isDown) return;
+
+		const y = e.pageY - this.offsetTop;
+		const percentage = y / this.offsetHeight;
+		const min = 0.4;
+		const max = 4;
+		const height = Math.round(percentage * 100) + `%`;
+		const playback = percentage * (max - min) + min;
+		bar.style.height = height;
+		bar.textContent = playback.toFixed(2) + 'x';
+		video.playbackRate = playback;
+		// console.log(percentage);
+
+	});
+	speed.addEventListener('mousedown', () => isDown = true);
+	speed.addEventListener('mouseup', () => isDown = false);
 </script>
 </body>
 </html>
